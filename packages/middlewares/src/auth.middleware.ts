@@ -9,28 +9,34 @@ export async function authenticate(
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.status(401).json({ error: "Authorization header missing" });
+    res.status(401).json({ error: "Authorization header missing" });
+    return;
   }
 
   try {
-    const response = await axios.get(
+    const response = await axios.post(
       `${process.env.AUTH_SERVICE_URL}/validate`,
+      {},
       {
-        headers: { Authorization: authHeader },
+        headers: {
+          Authorization: authHeader,
+        },
       }
     );
 
     if (!response.data.valid) {
-      return res.status(401).json({ error: "Invalid token" });
+      res.status(401).json({ error: "Invalid token" });
+      return;
     }
 
-    (req as any).auth = {
-      token: authHeader.split(" ")[1],
+    Object.assign(req, {
+      auth: { token: authHeader.split(" ")[1] },
       ...response.data,
-    };
+    });
 
     next();
   } catch (error) {
+    console.log({ error });
     res.status(401).json({ error: "Authentication failed" });
   }
 }
