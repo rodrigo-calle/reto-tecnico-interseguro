@@ -5,7 +5,8 @@ export const factorizeController = async (req: Request, res: Response) => {
   try {
     const { matrix } = req.body;
     const result = factorize(matrix);
-    const statsResponse = await fetch("http://stats-service:3004/analyze", {
+    const statsEndpoint = process.env.STATS_SERVICE_URL + "/analyze";
+    const statsResponse = await fetch(statsEndpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
