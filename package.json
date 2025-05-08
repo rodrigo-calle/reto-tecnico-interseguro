@@ -1,5 +1,6 @@
 {
   "name": "reto-tecnico-interseguro",
+  "author": "Rodrigo Calle",
   "private": true,
   "scripts": {
     "build": "turbo run build",
