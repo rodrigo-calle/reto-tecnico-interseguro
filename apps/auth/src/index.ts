@@ -3,9 +3,11 @@ import "dotenv/config";
 import { loadEnvs } from "./config";
 import authRouter from "./apis/auth/auth.routes";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT;

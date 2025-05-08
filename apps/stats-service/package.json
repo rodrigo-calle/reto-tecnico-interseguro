@@ -16,11 +16,13 @@
     "@repo/schemas": "workspace:*",
     "@types/mathjs": "^9.4.2",
     "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "mathjs": "^14.4.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",
+    "@types/cors": "^2.8.18",
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.3",

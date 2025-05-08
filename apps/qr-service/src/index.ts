@@ -2,9 +2,12 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import qrRoutes from "./api/qr/qr.routes";
 import bodyParser from "body-parser";
+import cors from "cors";
 
 dotenv.config();
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
